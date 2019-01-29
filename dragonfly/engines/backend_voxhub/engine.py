@@ -124,6 +124,45 @@ class VoxhubEngine(EngineBase):
         raise NotImplementedError("Virtual method not implemented for"
                                   " engine %s." % self)
 
+    def activate_grammar(self, grammar):
+        print("Activating grammar %s." % grammar.name)
+        grammar.enable()
+
+    def deactivate_grammar(self, grammar):
+        print("Deactivating grammar %s." % grammar.name)
+        grammar.disable()
+
+    def activate_rule(self, rule, grammar):
+        print("Activating rule %s in grammar %s." % (rule.name, grammar.name))
+        self._log.debug("Activating rule %s in grammar %s." % (rule.name, grammar.name))
+        #wrapper = self._get_grammar_wrapper(grammar)
+        #if not wrapper:
+        #    return
+        #try:
+        #    wrapper.dictation_grammar.enable_rule(rule.name)
+        #    self.unset_search(wrapper.search_name)
+        #    self.set_grammar(wrapper)
+        #except UnknownWordError as e:
+        #    self._log.error(e)
+        #except Exception as e:
+        #    self._log.exception("Failed to activate grammar %s: %s."
+        #                        % (grammar, e))
+
+    def deactivate_rule(self, rule, grammar):
+        self._log.debug("Deactivating rule %s in grammar %s." % (rule.name, grammar.name))
+        #wrapper = self._get_grammar_wrapper(grammar)
+        #if not wrapper:
+        #    return
+        #try:
+        #    wrapper.dictation_grammar.disable_rule(rule.name)
+        #    self.unset_search(wrapper.search_name)
+        #    self.set_grammar(wrapper)
+        #except UnknownWordError as e:
+        #    self._log.error(e)
+        #except Exception as e:
+        #    self._log.exception("Failed to activate grammar %s: %s."
+        #                        % (grammar, e))
+
     def update_list(self, lst, grammar):
         raise NotImplementedError("Virtual method not implemented for"
                                   " engine %s." % self)
