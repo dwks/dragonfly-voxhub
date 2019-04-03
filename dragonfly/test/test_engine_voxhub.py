@@ -46,4 +46,3 @@ if __name__ == '__main__':
     #
     load_test_grammar()
     engine.connect()
-    engine.process_speech()
