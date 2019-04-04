@@ -35,6 +35,7 @@ from server import connect_to_server
 from multiprocessing import Process, Queue
 from ...grammar.state import State
 from recobs import VoxhubRecObsManager
+import mic
 from config import *
 import re
 
@@ -163,6 +164,16 @@ class VoxhubEngine(EngineBase):
         self.compiler = VoxhubCompiler()
         self.compiler.compile_grammar(wrapper)  # extract grammar
 
+    def dump_grammar(self):
+        wrapper = self._current_grammar_wrapper
+
+        # Return if the engine isn't available or if wrapper is None.
+        if not (is_engine_available() and wrapper):
+            return
+
+        self.compiler = VoxhubCompiler()
+        self.compiler.dump_grammar(wrapper)
+
     def unload_grammar(self, grammar):
         wrapper_key = id(grammar)
         if wrapper_key not in self._grammar_wrappers:
@@ -290,3 +301,6 @@ class VoxhubEngine(EngineBase):
                 if re.match(r"\s*"+WAKE_UP_PHRASE+"\s*", result, re.I):
                     self._pause_transcript_processing = False
                     print("Waking up...")
+
+    def list_available_microphones(self):
+        mic.list_available_microphones()
