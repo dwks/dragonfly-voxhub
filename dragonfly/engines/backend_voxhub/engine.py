@@ -245,6 +245,7 @@ class VoxhubEngine(EngineBase):
 
     def mimic(self, words):
         print "[MIMIC]", words
+        self.process_transcript(words[0])
 
     def speak(self, text):
         print "[SPEAK]", text
