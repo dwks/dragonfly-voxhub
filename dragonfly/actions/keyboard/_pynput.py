@@ -252,6 +252,7 @@ class Keyboard(BaseKeyboard):
 
         """
         cls._log.debug("Keyboard.send_keyboard_events %r", events)
+        print("Keyboard.send_keyboard_events %s" % events)
         for event in events:
             (key, down, timeout) = event
 
